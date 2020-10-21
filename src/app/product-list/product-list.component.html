@@ -1,0 +1,40 @@
+<h2>Products</h2>
+
+<div *ngFor='let product of products; index as productId'>
+	<!-- *ngFor : "structural directive"
+   => shape or reshape the DOM's structure
+   => typically by adding, removing, and manipulating the elements to which they are attached.
+   => Directives with an asterisk, *-->
+	<h3>
+		<!-- [] => 프로퍼티 바인딩 문법: 프로퍼티값을 템플릿 표현식에 삽입 -->
+    <!-- ronterLink : gives the router control over the anchor element (ex: URL for a product with an id of 1 will be similar to https://getting-started-myfork.stackblitz.io/products/1-->
+		<a [title]='product.name + " details"' [routerLink]='["/products", productId]'>
+			<!-- 목록에 있는 상품마다 div를 반복 -->
+			{{product.name}}
+		</a>
+	</h3>
+
+	<!-- *ngIf : 실제로 상품명이 존재할때만 p태그 생성 -->
+	<p *ngIf='product.description'>
+		Description: {{ product.description }}
+	</p>
+
+
+
+	<!-- Event binding uses a set of parentheses (), Bind the button's click event to the share() method-->
+	<button (click)='share()'>
+    Share
+  </button>
+
+	<app-product-alerts 
+  [product]='product'
+  (notify)='onNotify()'>
+	</app-product-alerts>
+
+</div>
+
+<!-- 
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at http://angular.io/license
+-->
